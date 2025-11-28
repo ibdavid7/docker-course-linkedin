@@ -1,14 +1,27 @@
 {
-    "name": "Docker",
-    "mounts": [
-    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-  ],
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "ms-python.python",
-                "ms-azuretools.vscode-docker"
-            ]
-        }
+  "name": "mrf-pipeline",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {},
+    // This feature installs Docker CLI and configures the socket permissions automatically
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "16gb",
+    "storage": "64gb"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker" // Useful extension for Docker
+      ]
     }
+  },
+  "forwardPorts": [
+    6080,
+    5901
+  ]
 }
